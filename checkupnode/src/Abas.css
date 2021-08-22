@@ -1,0 +1,36 @@
+.nav-item > button {
+    font-weight: bold;
+    background-color: inherit;
+    float: left;
+    border-radius: 5px;
+    border-width: 0px;
+    border-color: #ceefee;
+    margin: 1px;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.1s;
+}
+
+.nav-item > button:hover {
+    background-color: #a2d3de;
+}
+
+.nav-item > button.active {
+    background-color: #6e97a2;
+}
+
+.nav-tabs {
+    background-color: #cbe8e8;
+    border-bottom: none;
+}
+
+.tab-content {
+    background-color: white;
+    padding: 2px;
+    margin: 5px;
+    border-radius: 5px;
+    border-width: 1px;
+    /*border-top: 1px grey;*/
+    border-style: outset;
+}

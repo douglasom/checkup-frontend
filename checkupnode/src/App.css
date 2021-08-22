@@ -1,9 +1,14 @@
 .App {
-  text-align: center;
+    text-align: center;
+    background-color: #cbe8e8;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
+}
+
+.App-header {
+    background-color: #afcbcb;
 }
 
 /*@keyframes App-logo-spin {*/

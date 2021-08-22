@@ -2,6 +2,7 @@
 import './App.css';
 import './checkup.css';
 import Identificacao from "./Identificacao"
+import Abas from "./Abas"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         {/*</a>*/}
         <Identificacao/>
       </header>
+        <Abas/>
     </div>
   );
 }

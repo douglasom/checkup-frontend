@@ -54,7 +54,10 @@ class Identificacao extends React.Component {
         return (
             <div>
                 <div className="identificacao">
-                    <span className="tituloPrincipal">Checkup</span>
+                    <FormGroup as={Col} sm={2}>
+                    {/*<span className="tituloPrincipal">Prontuário</span>*/}
+                        <h2>SymMed</h2>
+                    </FormGroup>
                     <div id="menuPrincipal" className="dropdown-content">
                     </div>
                     <FormGroup as={Col}>
