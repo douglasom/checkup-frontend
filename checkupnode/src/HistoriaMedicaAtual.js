@@ -1,5 +1,6 @@
 import React from 'react'
 import SintomaClassificado from './SintomaClassificado'
+import SintomaNaoClassificado from './SintomaNaoClassificado'
 import './comum.css'
 
 class HistoriaMedicaAtual extends React.Component {
@@ -17,6 +18,10 @@ class HistoriaMedicaAtual extends React.Component {
             { value: "ABC", label: 'abc'}
         ];
         let SintomaGinecologico = [
+            { value: "NENHUM", label: 'nenhum'},
+            { value: "ABC", label: 'abc'}
+        ];
+        let SintomaPulmonar = [
             { value: "NENHUM", label: 'nenhum'},
             { value: "ABC", label: 'abc'}
         ];
@@ -42,6 +47,17 @@ class HistoriaMedicaAtual extends React.Component {
                     opcoes: SintomaGinecologico,
                     classificacao: [SintomaGinecologico[0].value],
                     descricao: "descrição dos sintomas gineco"
+                },
+                associadosATireoidopatias: {
+                    descricao: "sintomas associados a tieroidopatias..."
+                },
+                pulmonares: {
+                    opcoes: SintomaPulmonar,
+                    classificacao: [SintomaPulmonar[0].value],
+                    descricao: "descrição dos sintomas gineco"
+                },
+                outrasQueixas: {
+                    descricao: "Outras queixas..."
                 }
             },
         }
@@ -54,6 +70,9 @@ class HistoriaMedicaAtual extends React.Component {
                     <SintomaClassificado label="GASTROINTESTINAIS" multiple="true" obj={fechamento.sintomas.gastrointestinais} />
                     <SintomaClassificado label="UROLÓGICOS" multiple="true" obj={fechamento.sintomas.urologicos} />
                     <SintomaClassificado label="GINEGOLÓGICOS" multiple="true" obj={fechamento.sintomas.ginecologicos} />
+                    <SintomaNaoClassificado label="Sintomas associados a tireoidopatias" obj={fechamento.sintomas.associadosATireoidopatias} />
+                    <SintomaClassificado label="PULMONARES" multiple="true" obj={fechamento.sintomas.pulmonares} />
+                    <SintomaNaoClassificado label="Outras queixas" obj={fechamento.sintomas.outrasQueixas} />
                 </div>
             </div>
         );
