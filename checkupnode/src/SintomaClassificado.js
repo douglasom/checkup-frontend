@@ -1,8 +1,8 @@
 import React from 'react'
 import {FormControl, FormLabel, FormGroup} from 'react-bootstrap'
-import './Sintoma.css'
+import './SintomaClassificado.css'
 
-class Sintoma extends React.Component {
+class SintomaClassificado extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -10,11 +10,10 @@ class Sintoma extends React.Component {
             label: props.label,
             multiple: props.multiple,
             name: props.name,
-            from: props.from,
-            value: props.obj['classificacao'],
-            // value: props.value,
+            from: props.obj.opcoes,
+            value: props.obj.classificacao,
             descricaoId: props.descricaoId,
-            descricaoValue: props.obj['descricao'],
+            descricaoValue: props.obj.descricao,
             descricaoName: 'descricao',
             descricaoPlaceHolder: 'resumo conciso e só se necessário.'
         };
@@ -29,14 +28,13 @@ class Sintoma extends React.Component {
     render() {
         let select =
             <div className="form-group">
-            <FormLabel htmlFor={this.state.id}>Classificação</FormLabel>
-            <FormControl as="select" id={this.state.id} className="form-control" multiple={this.state.multiple === 'true'}
-                         name={this.state.name} defaultValue={this.state.value}
-                         onChange={e => this.setValue(e)}
-            >
-                {this.state.from.map(({ value, label }, index) => <option value={value} key={value}>{label}</option>)}
-            </FormControl>
-        </div>
+                <FormLabel htmlFor={this.state.id}>Classificação</FormLabel>
+                <FormControl as="select" id={this.state.id} className="form-control" multiple={this.state.multiple === 'true'}
+                             name={this.state.name} defaultValue={this.state.value}
+                             onChange={e => this.setValue(e)}>
+                    {this.state.from.map(({ value, label }, index) => <option value={value} key={value}>{label}</option>)}
+                </FormControl>
+          </div>
 
         let descricao
         if (this.state.descricaoName != null) {
@@ -44,14 +42,14 @@ class Sintoma extends React.Component {
                 <FormLabel htmlFor={this.state.descricaoId}>Descrição</FormLabel>
                 <FormControl type="text" className="form-control" style={{width: "400px"}} id={this.state.descricaoId}
                              name={this.state.descricaoName} defaultValue={this.state.descricaoValue}
-                             placeholder={this.state.descricaoPlaceHolder}/>
+                             placeholder={this.state.descricaoPlaceHolder} />
             </div>
         }
 
         return (
             <div className="parteDaMesmaLinha">
                 <FormGroup>
-                    <FormLabel column={2}>{this.state.label}</FormLabel>
+                    <FormLabel column={2} className="tituloSintoma">{this.state.label}</FormLabel>
                         {select}
                         {descricao}
                 </FormGroup>
@@ -60,4 +58,4 @@ class Sintoma extends React.Component {
     }
 }
 
-export default Sintoma;
+export default SintomaClassificado;
