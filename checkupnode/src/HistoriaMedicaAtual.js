@@ -1,5 +1,6 @@
 import React from 'react'
 import Sintoma from './Sintoma'
+import './comum.css'
 
 class HistoriaMedicaAtual extends React.Component {
     render() {
@@ -7,14 +8,36 @@ class HistoriaMedicaAtual extends React.Component {
             { value: "NENHUM", label: 'nenhum'},
             { value: "PALPITACOES", label: 'palpitações'}
         ];
+        let SintomaGastrointestinal = [
+            { value: "NENHUM", label: 'nenhum'},
+            { value: "ABC", label: 'abc'}
+        ];
 
         let fechamento = {
-            sintomasCardiovasculares: SintomaCardiovascular[1],
-            historiaMedicaAtualSintomasCardiovascularesDescricao: "descrição dos sintomas"
+            sintomas: {
+              cardiovasculares: {
+                  classificacao: [SintomaCardiovascular[1].value],
+                  descricao: "descrição dos sintomas cardio"
+              },
+              gastrointestinais: {
+                  classificacao: [SintomaGastrointestinal[0].value],
+                  descricao: "descrição dos sintomas gastro"
+              }
+            },
         }
 
         return (
-            <Sintoma label="Sintomas Cardiovasculares" multiple="true" obj={fechamento} name="sintomasCardiovasculares" from={SintomaCardiovascular} descricaoName="historiaMedicaAtualSintomasCardiovascularesDescricao" descricaoPlaceHolder="resumo conciso e só se necessário." />
+            <div className="panel panel-default">
+                <div className="panel-heading"><h4 className="panel-title">Sintomas</h4></div>
+                <div className="panel-body">
+                    <div className="fieldset">
+                        <div className="mesmaLinha">
+                            <Sintoma label="CARDIOVASCULARES" multiple="true" obj={fechamento.sintomas.cardiovasculares} from={SintomaCardiovascular} />
+                            <Sintoma label="GASTROINTESTINAIS" multiple="true" obj={fechamento.sintomas.gastrointestinais} from={SintomaGastrointestinal} />
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

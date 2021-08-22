@@ -1,5 +1,5 @@
 import React from 'react'
-import {FormControl, FormLabel} from 'react-bootstrap'
+import {FormControl, FormLabel, FormGroup} from 'react-bootstrap'
 import './Sintoma.css'
 
 class Sintoma extends React.Component {
@@ -11,11 +11,12 @@ class Sintoma extends React.Component {
             multiple: props.multiple,
             name: props.name,
             from: props.from,
-            value: props.value,
+            value: props.obj['classificacao'],
+            // value: props.value,
             descricaoId: props.descricaoId,
-            descricaoValue: props.descricaoValue,
-            descricaoName: props.descricaoName,
-            descricaoPlaceHolder: props.descricaoPlaceHolder
+            descricaoValue: props.obj['descricao'],
+            descricaoName: 'descricao',
+            descricaoPlaceHolder: 'resumo conciso e só se necessário.'
         };
     }
 
@@ -28,7 +29,7 @@ class Sintoma extends React.Component {
     render() {
         let select =
             <div className="form-group">
-            <FormLabel htmlFor={this.state.id}>Sintoma(s)</FormLabel>
+            <FormLabel htmlFor={this.state.id}>Classificação</FormLabel>
             <FormControl as="select" id={this.state.id} className="form-control" multiple={this.state.multiple === 'true'}
                          name={this.state.name} defaultValue={this.state.value}
                          onChange={e => this.setValue(e)}
@@ -42,20 +43,18 @@ class Sintoma extends React.Component {
             descricao = <div className="form-group">
                 <FormLabel htmlFor={this.state.descricaoId}>Descrição</FormLabel>
                 <FormControl type="text" className="form-control" style={{width: "400px"}} id={this.state.descricaoId}
-                             name={this.state.descricaoName} value={this.state.descricaoValue}
+                             name={this.state.descricaoName} defaultValue={this.state.descricaoValue}
                              placeholder={this.state.descricaoPlaceHolder}/>
             </div>
         }
 
         return (
-            <div className="panel panel-default">
-                <div className="panel-heading"><h4 className="panel-title">{this.state.label}</h4></div>
-                <div className="panel-body">
-                    <div className="fieldset">
+            <div className="parteDaMesmaLinha">
+                <FormGroup>
+                    <FormLabel column={2}>{this.state.label}</FormLabel>
                         {select}
                         {descricao}
-                    </div>
-                </div>
+                </FormGroup>
             </div>
         );
     }
