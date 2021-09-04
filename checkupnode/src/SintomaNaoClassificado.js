@@ -33,7 +33,7 @@ class SintomaNaoClassificado extends React.Component {
         return (
             <div className="parteDaMesmaLinha">
                 <FormGroup>
-                    <FormLabel column={2} className="tituloSintoma">{this.state.label.toUpperCase()}</FormLabel>
+                    <FormLabel column={2} className="tituloClassificacao">{this.state.label.toUpperCase()}</FormLabel>
                     {descricao}
                 </FormGroup>
             </div>

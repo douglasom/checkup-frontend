@@ -1,21 +1,17 @@
 import React from 'react'
 import {FormControl, FormLabel, FormGroup} from 'react-bootstrap'
-import './SintomaClassificado.css'
+import './Classificacao.css'
 
-class SintomaClassificado extends React.Component {
+class Classificacao extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             id: props.id != null ? props.id : props.name?.replaceAll('\\.', ''),
             label: props.label,
             multiple: props.multiple,
-            name: props.name,
+            name: "classificacao",
             from: props.obj.opcoes,
             value: props.obj.classificacao,
-            descricaoId: props.descricaoId,
-            descricaoValue: props.obj.descricao,
-            descricaoName: 'descricao',
-            descricaoPlaceHolder: 'resumo conciso e só se necessário.'
         };
     }
 
@@ -36,26 +32,15 @@ class SintomaClassificado extends React.Component {
                 </FormControl>
           </div>
 
-        let descricao
-        if (this.state.descricaoName != null) {
-            descricao = <div className="form-group">
-                <FormLabel htmlFor={this.state.descricaoId}>Descrição</FormLabel>
-                <FormControl type="text" className="form-control" style={{width: "400px"}} id={this.state.descricaoId}
-                             name={this.state.descricaoName} defaultValue={this.state.descricaoValue}
-                             placeholder={this.state.descricaoPlaceHolder} />
-            </div>
-        }
-
         return (
             <div className="parteDaMesmaLinha">
                 <FormGroup>
                     <FormLabel column={2} className="tituloClassificacao">{this.state.label}</FormLabel>
                         {select}
-                        {descricao}
                 </FormGroup>
             </div>
         );
     }
 }
 
-export default SintomaClassificado;
+export default Classificacao;

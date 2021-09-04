@@ -27,10 +27,7 @@
 
 .tab-content {
     background-color: white;
-    padding: 2px;
-    margin: 5px;
     border-radius: 5px;
     border-width: 1px;
-    /*border-top: 1px grey;*/
     border-style: outset;
 }

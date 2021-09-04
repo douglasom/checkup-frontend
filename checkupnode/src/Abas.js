@@ -2,6 +2,7 @@ import './Abas.css';
 import React from 'react'
 import {Tabs, Tab} from 'react-bootstrap'
 import HistoriaMedicaAtual from "./HistoriaMedicaAtual"
+import HistoriaMedicaPregressa from "./HistoriaMedicaPregressa"
 
 class Abas extends React.Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class Abas extends React.Component {
                     <HistoriaMedicaAtual />
                 </Tab>
                 <Tab eventKey="secaoHistoriaMedicaPregressa" title="Hist. Méd. Pregressa">
+                    <HistoriaMedicaPregressa />
                 </Tab>
                 <Tab eventKey="secaoHistoriaMedicaFamiliar" title="Hist. Méd. Familiar">
                 </Tab>

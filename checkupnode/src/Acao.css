@@ -1,0 +1,15 @@
+.acao {
+    font-size: 1em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: 2px solid #ffffff;
+    background-color: #61858f;
+    color: white;
+    height: 60px;
+    padding: 0px;
+    margin-right: 5px;
+    width: 130px;
+    /*margin-top: 5px;*/
+    cursor: pointer;
+    box-shadow: 0px 2px 1px 0px grey;
+}
