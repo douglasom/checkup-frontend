@@ -12,29 +12,12 @@ class App extends React.Component {
 
     mySubmitHandler = event => {
         event.preventDefault()
-
-        let bodyObj = this.state
-        const body = JSON.stringify(bodyObj)
-        console.log("Enviando " + body)
-
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            contentType: "text/plain",
-            dataType: "text",
-            body: body
-            // body: JSON.stringify(postBody)
-        };
-        fetch('http://localhost:8080/checkup/salvarProntuario', requestOptions)
+        this.cleanErrorWarning()
+        fetch('http://localhost:8080/checkup/salvarProntuario', this.buildRequestOptions())
             .then(response => {
                 if (response.ok) {
                     if (response.redirected) {
-                        let paramConcatChar = "&"
-                        if (response.url.indexOf("?")< 0) {
-                            paramConcatChar = "?"
-                        }
-                        const originalUrl = btoa(unescape(encodeURIComponent(window.location.href)))
-                        window.location.href = (response.url + paramConcatChar + "forwardURI=" + originalUrl)
+                        this.followRedirection(response.url)
                     }
                     console.log("OK!")
                 } else {
@@ -44,11 +27,7 @@ class App extends React.Component {
                 return response.json()
             })
             .then(data => {
-                console.log("Resposta:")
-                console.log(data)
-                if (data.erro) {
-                    this.setState({"erro": data.erro})
-                }
+                this.handleResponse(data)
             });
     }
 
@@ -57,6 +36,47 @@ class App extends React.Component {
         this.state = {
 
         }
+    }
+
+    buildRequestOptions() {
+        const postBody = this.preparePostBody()
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            contentType: "text/plain",
+            dataType: "text",
+            body: postBody
+        }
+        return requestOptions
+    }
+
+    preparePostBody() {
+        let bodyObj = this.state
+        const body = JSON.stringify(bodyObj)
+        console.log("Enviando " + body)
+        return body
+    }
+
+    cleanErrorWarning() {
+        this.setState({ "erro": null })
+    }
+
+    handleResponse(data) {
+        console.log("Resposta:")
+        console.log(data)
+        if (data.erro) {
+            this.setState({ "erro": data.erro })
+        }
+    }
+
+    followRedirection(url) {
+        let paramConcatChar = "&"
+        if (url.indexOf("?") < 0) {
+            paramConcatChar = "?"
+        }
+        const originalUrl = btoa(unescape(encodeURIComponent(window.location.href)))
+        window.location.href = (url + paramConcatChar + "forwardURI=" + originalUrl)
     }
 
     componentDidMount() {
